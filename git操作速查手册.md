@@ -9,10 +9,16 @@
 
 ## 将本地仓库的内容合并到远程仓库
 + git push # 将本地仓库的内容合并到远程仓库
-    + git push -f master # 
+    + git push -f master #用本地的仓库强制覆盖远程仓库（慎用！） 
 
 ## 将远程仓库的内容同步到本地仓库 
 + git pull 
+
+## 创建分支
++ git branch branch_name
+
+## 切换分支
++ git checkout branch_name
 
  
 
