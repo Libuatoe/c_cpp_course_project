@@ -19,6 +19,7 @@
 
 ## 切换分支
 + git checkout branch_name
+    + 在切换分支之前需要将当前暂存区文件commit到本地仓库，否则无法切换
 
  
 
