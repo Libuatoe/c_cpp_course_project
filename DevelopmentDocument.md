@@ -30,5 +30,26 @@
 + 方法：小写
 + 类：首字母大写
 ## 整体架构
++ Matrix.hpp
+    + 一般的矩阵
+    + 属性
+        + length
+        + row
+        + data[length][row]
+     + 例：
+     <br>
+     a11 a12 a13 a14
+     <br>
+     a21 a22 a23 a24
+     <br>
+     a31 a32 a33 a34
++ SparseMatrix.hpp
+    + 稀疏矩阵
+    + 属性
+        + 定义一个struct 为entry<X,Y,val> 代表矩阵元素的横坐标，纵坐标，值
+        + 使用一个vector<entry>来储存数据
+        
+        
+
 
 
