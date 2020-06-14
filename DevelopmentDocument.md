@@ -33,9 +33,9 @@
 + Matrix.hpp
     + 一般的矩阵
     + 属性
+        + width
         + length
-        + row
-        + data[length][row]
+        + data[width][length]
      + 例：
      <br>
      a11 a12 a13 a14
