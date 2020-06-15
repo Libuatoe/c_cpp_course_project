@@ -38,6 +38,38 @@ namespace matrix {
             }
         }
 
+        //乘法
+        Matrix operator*(Matrix b) {
+            if (this->matrixLength == b.matrixWidth) {
+                Matrix<T, width, b.matrixLength> result;
+                for (int i = 0; i < width; ++i) {
+                    for (int j = 0; j < b.matrixLength; ++j) {
+                        result.data[i][j] = 0;
+                        for (int k = 0; k < length; ++k) {
+                            result.data[i][j] = result.data[i][j] + this->data[i][k] * b.data[k][j];
+                        }
+                    }
+                }
+            } else {
+
+            }
+        }
+
+        //元素乘法，仅限于两矩阵大小相同的情况
+        T elementMultiply(Matrix b) {
+            if (this->matrixLength == b.matrixLength && this->matrixWidth == b.matrixWidth) {
+                Matrix<T, width, length> result;
+                for (int i = 0; i < width; ++i) {
+                    for (int j = 0; j < length; ++j) {
+                        result.data[i][j] = this->data[i][j] * b.data[i][j];
+                    }
+                }
+                return result;
+            } else {
+
+            }
+        }
+
         __unused //找矩阵最大值
         T findMax() {
             T max = this->data[0][0];
@@ -70,5 +102,29 @@ namespace matrix {
             }
             return sum;
         }
+
+        //求平均
+        __unused T average() {
+            T average;
+            for (int i = 0; i < width; ++i) {
+                for (int j = 0; j < length; ++j) {
+                    average += this->data[i][j];
+                }
+            }
+            return average / (width * length);
+        }
+
+        __unused //转置
+        Matrix transpose() {
+            Matrix<T, length, width> result;
+            for (int i = 0; i < width; ++i) {
+                for (int j = 0; j < length; ++j) {
+                    result.data[j][i] = this->data[i][j];
+                }
+            }
+            return result;
+        }
+
+
     };
 }
