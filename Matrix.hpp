@@ -55,6 +55,27 @@ namespace matrix {
             }
         }
 
+        //标量乘法，常数乘矩阵或矩阵乘常数
+        friend Matrix operator*(Matrix matrix, T t) {
+            Matrix<T, width, length> result;
+            for (int i = 0; i < width; ++i) {
+                for (int j = 0; j < length; ++j) {
+                    result.data[i][j] = matrix.data[i][j] * t;
+                }
+            }
+            return result;
+        }
+
+        friend Matrix operator*(T t, Matrix matrix) {
+            Matrix<T, width, length> result;
+            for (int i = 0; i < width; ++i) {
+                for (int j = 0; j < length; ++j) {
+                    result.data[i][j] = matrix.data[i][j] * t;
+                }
+            }
+            return result;
+        }
+
         //元素乘法，仅限于两矩阵大小相同的情况
         T elementMultiply(Matrix b) {
             if (this->matrixLength == b.matrixLength && this->matrixWidth == b.matrixWidth) {
