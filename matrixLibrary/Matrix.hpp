@@ -145,7 +145,5 @@ namespace matrix {
             }
             return result;
         }
-
-
     };
 }
