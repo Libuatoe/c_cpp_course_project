@@ -2,6 +2,9 @@
 #define RESHAPE
 # include "Matrix.hpp"
 
+/**
+ *该方法实现了reshape，可以对一个矩阵从行、列方向整形
+ */
 //this function reshape matrix with the new size.
 template<typename T>
 void matrix::Matrix<T>::reshape(int newRow, int newColumn) {

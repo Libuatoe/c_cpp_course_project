@@ -3,6 +3,9 @@
 #include "Matrix.hpp"
 
 
+/**
+ *该类继承自Matrix，用以实现矩阵中的卷积算法
+ */
 template<typename T>
 matrix::Matrix<T> matrix::Matrix<T>::convolution(matrix::Matrix<T> kernel) {
         int temp;

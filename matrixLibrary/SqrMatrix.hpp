@@ -4,6 +4,10 @@
 #include "vector"
 #include <cmath>
 
+/**
+ *该类继承自Matrix，实现了方阵特有的一系列方法
+ * 包括迹，行列式，伴随矩阵，逆矩阵等等方法的实现
+ */
 namespace matrix {
 
     template<typename T>
@@ -24,7 +28,7 @@ namespace matrix {
             return row;
         }
 
-//计算矩阵的迹
+    //计算矩阵的迹
         T trace() {
             T ans = 0;
             for (int i = 0; i < row; ++i) {
@@ -34,7 +38,7 @@ namespace matrix {
             return ans;
         }
 
-//计算矩阵的行列式
+    //计算矩阵的行列式
         T determinant() {
             return determinant(this->data, row);
         }

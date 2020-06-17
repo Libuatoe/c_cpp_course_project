@@ -8,7 +8,10 @@
 #include "Matrix.hpp"
 #include "complex"
 
-
+/**
+ *该类继承自Matrix，用以实现复数矩阵中的共轭算法。
+ * 复数矩阵中的其他方法均在父类Matrix中实现
+ */
 namespace matrix {
     template<typename T>
     class Complex : public Matrix<T> {
