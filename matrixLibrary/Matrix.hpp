@@ -40,28 +40,27 @@ namespace matrix {
         //矩阵加法
         Matrix add(Matrix<T> adder);
 
-        Matrix operator+(Matrix b);
+        Matrix operator+(Matrix<T> b);
 
         //矩阵减法
-        Matrix<T> subtract(Matrix minuend);
+        Matrix<T> subtract(Matrix<T> minuend);
 
-        Matrix operator-(Matrix minuend);
+        Matrix operator-(Matrix<T> minuend);
 
         //矩阵乘法
-        Matrix<T> multiple(Matrix multiplier);
-
         Matrix<T> operator*(Matrix<T> multiplier);
+        Matrix<T> multiple(Matrix<T> multiplier);
 
-        //标量乘法，常数乘矩阵或矩阵乘常数
-        friend Matrix operator*(Matrix matrix, T t);
 
-        friend Matrix operator*(T t, Matrix matrix);
 
         friend Matrix operator/(Matrix matrix, T t);
 
         friend Matrix operator/(T t, Matrix matrix);
 
         Matrix<T> scaleMultiple(T t);
+        //标量乘法，常数乘矩阵或矩阵乘常数
+
+
 
         friend Matrix operator*(T t, Matrix matrix) {
             Matrix<T> result(matrix.row, matrix.column);
@@ -73,7 +72,7 @@ namespace matrix {
             return result;
         }
 
-        friend Matrix operator*(Matrix matrix, T t) {
+        friend Matrix<T> operator*(Matrix<T> matrix, T t) {
             Matrix<T> result(matrix.row, matrix.column);
             for (int i = 0; i < matrix.row; ++i) {
                 for (int j = 0; j < matrix.column; ++j) {

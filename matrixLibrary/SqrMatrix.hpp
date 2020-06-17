@@ -1,42 +1,43 @@
 #include "Matrix.hpp"
 #include "vector"
-#include "math.h"
+#include <cmath>
 
 namespace matrix {
 
-    template<typename T, int width>
-    class SqrMatrix : public Matrix<T, width, width> {
+    template<typename T>
+    class SqrMatrix : public Matrix<T> {
     private:
+        int row;
     public:
-        SqrMatrix() {
-            Matrix<T, width, width>();
+
+        explicit SqrMatrix(int row) : Matrix<T>(row, row) {
+            this->row = row;
         }
 
-        explicit SqrMatrix(T arr[]) : Matrix<T, width, width>(arr) {
+        explicit SqrMatrix(int row,T arr[]) : Matrix<T>(row,row,arr) {
+            this->row = row;
+        }
+
+        int getRow() const {
+            return row;
         }
 
 //计算矩阵的迹
         T trace() {
             T ans = 0;
-            for (int i = 0; i < width; ++i) {
-                Matrix<T, width, width> tmp = *this;
-                ans += tmp(i, i);
+            for (int i = 0; i < row; ++i) {
+                SqrMatrix<T> tmp = *this;
+                ans += tmp[i][i];
             }
             return ans;
         }
 
 //计算矩阵的行列式
-        T getDeterminant() {
-            std::vector<std::vector<T>> arr(width, std::vector<T>(width));
-            for (int i = 0; i < width; ++i) {
-                for (int j = 0; j < width; ++j) {
-                    arr[i][j] = this->data[i][j];
-                }
-            }
-            return det(arr, width);
+        T determinant() {
+            return determinant(this->data, row);
         }
 
-        static T det(const std::vector<std::vector<T>> arr, int layer) {
+        static T determinant(const std::vector<std::vector<T>> arr, int layer) {
             T ans{0};
             if (layer == 1) {
                 return arr[0][0];
@@ -59,7 +60,7 @@ namespace matrix {
                         }
                     }
                     int sign = (int) pow(-1, 1 + cnt2 + 1);
-                    ans += arr[cnt2][0] * sign * det(tmp, layer - 1);
+                    ans += arr[cnt2][0] * sign * determinant(tmp, layer - 1);
                 }
             }
 
@@ -68,7 +69,7 @@ namespace matrix {
 
 
         //计算伴随矩阵
-       static int adjoint(const std::vector<std::vector<T>> &mat, std::vector<std::vector<T>> &adj, int N) {
+        int adjoint(const std::vector<std::vector<T>> &mat, std::vector<std::vector<T>> &adj, int N) {
             if (mat.size() != N) {
                 fprintf(stderr, "mat must be square matrix\n");
                 return -1;
@@ -108,32 +109,41 @@ namespace matrix {
                     }
 
                     int sign = (int) pow(-1, x + y);
-                    adj[y][x] = sign * getDeterminant(m, N - 1);
+                    adj[y][x] = sign * determinant(m, N - 1);
                 }
             }
             return 0;
         }
 
         // 求逆矩阵
-       SqrMatrix inverse(){
-       SqrMatrix<T,width> inverseMatrix;
+        SqrMatrix<T> inverse() {
 
-       std::vector<std::vector<T>> origin;
+            SqrMatrix<T> inverseMatrix(this->row);
+
+            std::vector<std::vector<T>> origin;
             std::vector<std::vector<T>> answer;
-            for (int i = 0; i < width; ++i) {
-                for (int j = 0; j < width; ++j) {
+
+            origin.resize(row);
+            answer.resize(row);
+            for (int i = 0; i < row; ++i) {
+                origin[i].resize(row);
+                answer[i].resize(row);
+            }
+            for (int i = 0; i < row; ++i) {
+                for (int j = 0; j < row; ++j) {
                     origin[i][j] = this->data[i][j];
                 }
             }
-            inverse(origin, answer, width);
-            for (int i = 0; i < width; ++i) {
-                for (int j = 0; j < width; ++j) {
-                    inverseMatrix->data[i][j] = answer[i][j];
+            inverse(origin, answer, row);
+            for (int i = 0; i < row; ++i) {
+                for (int j = 0; j < row; ++j) {
+                    inverseMatrix.data[i][j] = answer[i][j];
                 }
             }
             return inverseMatrix;
-    }
-       static void inverse(const std::vector<std::vector<T>> &mat, std::vector<std::vector<T>> &inv, int N) {
+        }
+
+        void inverse(const std::vector<std::vector<T>> &mat, std::vector<std::vector<T>> &inv, int N) {
             T det = determinant(mat, N);
 
             inv.resize(N);

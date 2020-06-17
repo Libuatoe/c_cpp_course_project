@@ -1,5 +1,6 @@
 #include "Matrix.hpp"
 
+//Slice a submatrix with coordinate
 //x1 y1 for left upper , x2 y2 for right bottom
 template<typename T>
 matrix::Matrix<T> matrix::Matrix<T>::slice(int x1, int y1, int x2, int y2) {
@@ -14,4 +15,41 @@ matrix::Matrix<T> matrix::Matrix<T>::slice(int x1, int y1, int x2, int y2) {
     return ans;
 }
 
-//这里再写两个切片行或列的方法
+
+//这个方法切下一个行向量矩阵
+template<typename T>
+matrix::Matrix<T> matrix::Matrix<T>::sliceRow(int rowNum) {
+    std::vector<T> vec = this->data[rowNum];
+    matrix::Matrix<T> ans(1, this->column);
+    ans.data[0] = vec;
+    return ans;
+}
+
+
+//这个方法切下一个列向量矩阵
+template<typename T>
+matrix::Matrix<T> matrix::Matrix<T>::sliceColumn(int columnNum) {
+    matrix::Matrix<T> ans(this->row, 1);
+    for (int i = 0; i < this->row; ++i) {
+        ans[i][0] = this->data[i][columnNum];
+    }
+    return ans;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
