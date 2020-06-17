@@ -1,8 +1,17 @@
-//
-// Created by Yu on 6-17.
-//
+#include "Matrix.hpp"
 
-#ifndef PROJECT_COLUMNVECTOR_HPP
-#define PROJECT_COLUMNVECTOR_HPP
+namespace matrix {
+    template<typename T>
+    class ColumnVector: public Matrix<T> {
+    private:
+        int row;
+    public:
+        ColumnVector(int row, T arr[]) : Matrix<T>(row, 1, arr) {
+            this->row = row;
+        }
 
-#endif //PROJECT_COLUMNVECTOR_HPP
+        ColumnVector(int row) : Matrix<T>(row, 1) {
+            this->row = row;
+        }
+    };
+}
