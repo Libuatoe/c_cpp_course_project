@@ -1,5 +1,6 @@
 #ifndef MATRIX
 #define MATRIX
+
 #include "iostream"
 #include "vector"
 
@@ -38,8 +39,6 @@ namespace matrix {
                 }
             }
         };
-
-
 
 
 //矩阵乘法方法的实现
@@ -128,8 +127,6 @@ namespace matrix {
         }
 
 
-
-
         friend Matrix<T> operator/(Matrix<T> matrix, T t) {
             Matrix<T> result(matrix.row, matrix.column);
             for (int i = 0; i < matrix.row; ++i) {
@@ -139,11 +136,6 @@ namespace matrix {
             }
             return result;
         }
-
-
-
-
-
 
 
 /*减法运算的实现
@@ -164,11 +156,9 @@ namespace matrix {
         }
 
 //减号运算符的重载
-       Matrix<T> operator-(matrix::Matrix<T> minuend) {
+        Matrix<T> operator-(matrix::Matrix<T> minuend) {
             return subtract(minuend);
         }
-
-
 
 
 //阿达玛乘积
@@ -197,11 +187,31 @@ namespace matrix {
             return max;
         }
 
+        T findMax(int loRow, int loCol, int upRow, int upCol) {
+            T max = this->data[0][0];
+            for (int i = loRow; i < upRow; ++i) {
+                for (int j = loCol; j < upCol; ++j) {
+                    max = max > this->data[i][j] ? max : this->data[i][j];
+                }
+            }
+            return max;
+        }
+
 //求矩阵中的最小元素
         T findMin() {
             T min = this->data[0][0];
             for (int i = 0; i < row; ++i) {
                 for (int j = 0; j < column; ++j) {
+                    min = min < this->data[i][j] ? min : this->data[i][j];
+                }
+            }
+            return min;
+        }
+
+        T findMin(int loRow, int loCol, int upRow, int upCol) {
+            T min = this->data[0][0];
+            for (int i = loRow; i < upRow; ++i) {
+                for (int j = loCol; j < upCol; ++j) {
                     min = min < this->data[i][j] ? min : this->data[i][j];
                 }
             }
@@ -219,8 +229,18 @@ namespace matrix {
             return average / (row * column);
         }
 
+        T average(int loRow, int loCol, int upRow, int upCol) {
+            T average;
+            for (int i = loRow; i < upRow; ++i) {
+                for (int j = loCol; j < upCol; ++j) {
+                    average += this->data[i][j];
+                }
+            }
+            return average / ((upRow - loRow) * (upCol - loCol));
+        }
+
 //求矩阵中所有元素的和
-        T sum() {
+        T sumAll() {
             T sum;
             for (int i = 0; i < row; ++i) {
                 for (int j = 0; j < column; ++j) {
