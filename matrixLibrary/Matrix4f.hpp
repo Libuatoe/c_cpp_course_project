@@ -10,7 +10,6 @@ namespace matrix{
 
 
         Matrix4f(T arr[]):Matrix<T>(4,4,arr){
-
         }
 
 
