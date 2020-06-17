@@ -1,3 +1,5 @@
+#ifndef MATRIX4F
+#define MATRIX4F
 #include "Matrix.hpp"
 
 namespace matrix{
@@ -12,6 +14,7 @@ namespace matrix{
         Matrix4f(T arr[]):Matrix<T>(4,4,arr){
         }
 
-
     };
 }
+
+#endif

@@ -1,3 +1,5 @@
+#ifndef SQR_MATRIX
+#define SQR_MATRIX
 #include "Matrix.hpp"
 #include "vector"
 #include <cmath>
@@ -69,47 +71,46 @@ namespace matrix {
 
 
         //计算伴随矩阵
-        int adjoint(const std::vector<std::vector<T>> &mat, std::vector<std::vector<T>> &adj, int N) {
-            if (mat.size() != N) {
-                fprintf(stderr, "mat must be square matrix\n");
+        int adjoint(const std::vector<std::vector<T>> &matrix, std::vector<std::vector<T>> &adjointMatrix, int rowSize) {
+            if (matrix.size() != rowSize) {
+                std::cout<<"This matrix is not a square matrix."<<std::endl;
                 return -1;
             }
-            for (int i = 0; i < mat.size(); ++i) {
-                if (mat[i].size() != N) {
-                    fprintf(stderr, "mat must be square matrix\n");
+            for (int i = 0; i < matrix.size(); ++i) {
+                if (matrix[i].size() != rowSize) {
+                    std::cout<<"This matrix is not a square matrix."<<std::endl;
                     return -1;
                 }
             }
 
-            adj.resize(N);
-            for (int i = 0; i < N; ++i) {
-                adj[i].resize(N);
+            adjointMatrix.resize(rowSize);
+            for (int i = 0; i < rowSize; ++i) {
+                adjointMatrix[i].resize(rowSize);
             }
 
-            for (int y = 0; y < N; ++y) {
+            for (int y = 0; y < rowSize; ++y) {
                 std::vector<int> m_cols;
-                for (int i = 0; i < N; ++i) {
+                for (int i = 0; i < rowSize; ++i) {
                     if (i != y) m_cols.push_back(i);
                 }
 
-                for (int x = 0; x < N; ++x) {
+                for (int x = 0; x < rowSize; ++x) {
                     std::vector<int> m_rows;
-                    for (int i = 0; i < N; ++i) {
+                    for (int i = 0; i < rowSize; ++i) {
                         if (i != x) m_rows.push_back(i);
                     }
 
-                    std::vector<std::vector<T>> m(N - 1);
-                    for (int i = 0; i < N - 1; ++i) {
-                        m[i].resize(N - 1);
+                    std::vector<std::vector<T>> m(rowSize - 1);
+                    for (int i = 0; i < rowSize - 1; ++i) {
+                        m[i].resize(rowSize - 1);
                     }
-                    for (int j = 0; j < N - 1; ++j) {
-                        for (int i = 0; i < N - 1; ++i) {
-                            m[j][i] = mat[m_rows[j]][m_cols[i]];
+                    for (int j = 0; j < rowSize - 1; ++j) {
+                        for (int i = 0; i < rowSize - 1; ++i) {
+                            m[j][i] = matrix[m_rows[j]][m_cols[i]];
                         }
                     }
-
                     int sign = (int) pow(-1, x + y);
-                    adj[y][x] = sign * determinant(m, N - 1);
+                    adjointMatrix[y][x] = sign * determinant(m, rowSize - 1);
                 }
             }
             return 0;
@@ -143,8 +144,8 @@ namespace matrix {
             return inverseMatrix;
         }
 
-        void inverse(const std::vector<std::vector<T>> &mat, std::vector<std::vector<T>> &inv, int N) {
-            T det = determinant(mat, N);
+        void inverse(const std::vector<std::vector<T>> &matrix, std::vector<std::vector<T>> &inv, int N) {
+            T det = determinant(matrix, N);
 
             inv.resize(N);
             for (int i = 0; i < N; ++i) {
@@ -153,7 +154,9 @@ namespace matrix {
 
             double coef = 1.f / det;
             std::vector<std::vector<T>> adj;
-            if (adjoint(mat, adj, N) != 0) return;
+            if (adjoint(matrix, adj, N) != 0) {
+                return;
+            }
 
             for (int y = 0; y < N; ++y) {
                 for (int x = 0; x < N; ++x) {
@@ -163,3 +166,4 @@ namespace matrix {
         }
     };
 }
+#endif

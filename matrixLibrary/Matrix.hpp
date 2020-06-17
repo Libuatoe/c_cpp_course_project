@@ -1,3 +1,5 @@
+#ifndef MATRIX
+#define MATRIX
 #include "iostream"
 #include "vector"
 
@@ -278,3 +280,4 @@ namespace matrix {
 
 
 }
+#endif

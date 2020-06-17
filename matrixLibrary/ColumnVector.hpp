@@ -1,3 +1,6 @@
+
+#ifndef COLUMN_VECTOR
+#define COLUMN_VECTOR
 #include "Matrix.hpp"
 
 namespace matrix {
@@ -15,3 +18,4 @@ namespace matrix {
         }
     };
 }
+#endif

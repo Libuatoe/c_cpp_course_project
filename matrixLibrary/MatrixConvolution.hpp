@@ -1,3 +1,5 @@
+#ifndef MATRIX_CONVOLUTION
+#define MATRIX_CONVOLUTION
 #include "Matrix.hpp"
 
 
@@ -23,7 +25,5 @@ matrix::Matrix<T> matrix::Matrix<T>::convolution(matrix::Matrix<T> kernel) {
             }
         }
         return result;
-
 }
-
-
+#endif
