@@ -2,6 +2,9 @@
 #define ROW_VECTOR
 #include "Matrix.hpp"
 
+/**
+ *该类继承自Matrix，用以实现行向量
+ */
 namespace matrix {
     template<typename T>
     class RowVector : public Matrix<T> {

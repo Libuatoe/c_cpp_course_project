@@ -2,6 +2,9 @@
 #define MATRIX4F
 #include "Matrix.hpp"
 
+/**
+ *该类继承自Matrix，用以实现小矩阵
+ */
 namespace matrix{
     template<typename T>
     class Matrix4f:public Matrix<T>{

@@ -5,6 +5,10 @@
 #include "iostream"
 #include "vector"
 
+/**
+ *该类是其他类的父类，里面有数值运算，运算符重载等基础方法。
+ * 有多种形式的构造器方法和get、set方法
+ */
 namespace matrix {
 
     template<typename T>
@@ -60,13 +64,13 @@ namespace matrix {
             }
         }
 
-//乘法运算符的重载
+        //乘法运算符的重载
         Matrix<T> operator*(matrix::Matrix<T> multiplier) {
             return multiple(multiplier);
         }
 
 
-//标量乘法
+        //标量乘法
         Matrix<T> scaleMultiple(T t) {
             Matrix<T> result(row, column);
             for (int i = 0; i < row; ++i) {
@@ -77,10 +81,10 @@ namespace matrix {
             return result;
         }
 
-/*加法运算的实现
- *包括一个加法方法，返回相加后的矩阵
- * 以及一个加号运算符的重载
-*/
+        /**加法运算的实现
+         *包括一个加法方法，返回相加后的矩阵
+         * 以及一个加号运算符的重载
+        */
         Matrix<T> add(Matrix<T> adder) {
             if (this->column == adder.column && this->row == adder.row) {
                 Matrix<T> result(this->row, this->column);
@@ -94,12 +98,12 @@ namespace matrix {
             }
         }
 
-//加法运算符的重载
+        //加法运算符的重载
         Matrix<T> operator+(matrix::Matrix<T> adder) {
             return add(adder);
         }
-//赋值运算符的重载
 
+        //赋值运算符的重载
         Matrix<T> &operator=(const Matrix<T> &matrix1) {
             row = matrix1.row;
             column = matrix1.column;
@@ -117,6 +121,7 @@ namespace matrix {
             return result;
         }
 
+        //乘法运算符的重载
         friend Matrix<T> operator*(Matrix<T> matrix, T t) {
             Matrix<T> result(matrix.row, matrix.column);
             for (int i = 0; i < matrix.row; ++i) {
@@ -128,6 +133,7 @@ namespace matrix {
         }
 
 
+        //除法
         friend Matrix<T> operator/(Matrix<T> matrix, T t) {
             Matrix<T> result(matrix.row, matrix.column);
             for (int i = 0; i < matrix.row; ++i) {
@@ -139,10 +145,10 @@ namespace matrix {
         }
 
 
-/*减法运算的实现
- *包括一个减法方法，返回减去后的矩阵
- * 以及一个减号运算符的重载
-*/
+        /**减法运算的实现
+         *包括一个减法方法，返回减去后的矩阵
+         * 以及一个减号运算符的重载
+        */
         Matrix<T> subtract(Matrix<T> minuend) {
             if (this->column == minuend.column && this->row == minuend.row) {
                 Matrix<T> answer(this->row, this->column);
@@ -156,13 +162,13 @@ namespace matrix {
             }
         }
 
-//减号运算符的重载
+        //减号运算符的重载
         Matrix<T> operator-(matrix::Matrix<T> minuend) {
             return subtract(minuend);
         }
 
 
-//阿达玛乘积
+        //阿达玛乘积的实现
         Matrix<T> elementMultiply(Matrix<T> b) {
             if (this->column == b.column && this->row == b.row) {
                 Matrix<T> result(this->row, this->column);
@@ -177,7 +183,7 @@ namespace matrix {
             }
         }
 
-//求矩阵中的最大元素
+        //求矩阵中的最大元素
         T findMax() {
             T max = this->data[0][0];
             for (int i = 0; i < row; ++i) {
@@ -188,6 +194,7 @@ namespace matrix {
             return max;
         }
 
+        //求矩阵中的局部最大元素，限定行和列
         T findMax(int loRow, int loCol, int upRow, int upCol) {
             T max = this->data[0][0];
             for (int i = loRow; i < upRow; ++i) {
@@ -198,7 +205,7 @@ namespace matrix {
             return max;
         }
 
-//求矩阵中的最小元素
+        //求矩阵中的最小元素
         T findMin() {
             T min = this->data[0][0];
             for (int i = 0; i < row; ++i) {
@@ -209,6 +216,7 @@ namespace matrix {
             return min;
         }
 
+        //求矩阵中的局部最小元素，限定行和列
         T findMin(int loRow, int loCol, int upRow, int upCol) {
             T min = this->data[0][0];
             for (int i = loRow; i < upRow; ++i) {
@@ -219,7 +227,7 @@ namespace matrix {
             return min;
         }
 
-//求矩阵的平均值
+        //求矩阵的平均值
         T average() {
             T average;
             for (int i = 0; i < row; ++i) {
@@ -230,6 +238,7 @@ namespace matrix {
             return average / (row * column);
         }
 
+        //求矩阵中的局部平均值，限定行和列
         T average(int loRow, int loCol, int upRow, int upCol) {
             T average;
             for (int i = loRow; i < upRow; ++i) {
@@ -240,7 +249,7 @@ namespace matrix {
             return average / ((upRow - loRow) * (upCol - loCol));
         }
 
-//求矩阵中所有元素的和
+        //求矩阵中所有元素的和
         T sumAll() {
             T sum;
             for (int i = 0; i < row; ++i) {
@@ -252,7 +261,7 @@ namespace matrix {
         }
 
 
-//求该矩阵的转置，返回转置后的矩阵
+        //求该矩阵的转置，返回转置后的矩阵
         Matrix<T> transpose() {
             Matrix<T> result(this->column, this->row);
             for (int i = 0; i < row; ++i) {
@@ -263,10 +272,12 @@ namespace matrix {
             return result;
         }
 
+        //[]运算符重载
         std::vector<T> &operator[](int i) {
             return data[i];
         }
 
+        //show方法，输出矩阵中的所有数据
         void showMatrix() {
             for (int i = 0; i < row; ++i) {
                 for (int j = 0; j < column; ++j) {
@@ -276,16 +287,20 @@ namespace matrix {
             }
         }
 
+        //以下是slice、sliceRow、sliceColumn方法的定义
         Matrix<T> slice(int x1, int y1, int x2, int y2);
 
         Matrix<T> sliceRow(int rowNum);
 
         Matrix<T> sliceColumn(int columnNum);
 
+        //整形方法的定义
         void reshape(int newRow, int newColumn);
 
+        //矩阵的卷积方法的定义
         Matrix convolution(Matrix kernel);
 
+        //矩阵的三个set方法
         void setRow(int setRow) {
             this->row = setRow;
         }

@@ -2,6 +2,9 @@
 #define SLICE
 #include "Matrix.hpp"
 
+/**
+ *该类继承自Matrix，可以从行列两个方向对矩阵进行切片
+ */
 //Slice a submatrix with coordinate
 //x1 y1 for left upper , x2 y2 for right bottom
 template<typename T>

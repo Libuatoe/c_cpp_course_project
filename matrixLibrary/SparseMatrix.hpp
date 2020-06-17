@@ -2,6 +2,10 @@
 #define SPARSE_MATRIX
 #include "Matrix.hpp"
 
+/**
+ *该类继承自Matrix，用三元组的形式存储了稀疏矩阵
+ * 实现了稀疏矩阵和稠密矩阵之间的转换
+ */
 template<typename T>
 struct triple {
     int rowCoo; //行坐标
