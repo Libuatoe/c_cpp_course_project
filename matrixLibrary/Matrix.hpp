@@ -1,6 +1,7 @@
 #ifndef MATRIX
 #define MATRIX
 
+#include <complex.h>
 #include "iostream"
 #include "vector"
 
@@ -9,8 +10,8 @@ namespace matrix {
     template<typename T>
     class Matrix {
     private:
-        int row;
-        int column;
+        int row{};
+        int column{};
     public:
 
         std::vector<std::vector<T>> data;
@@ -41,7 +42,7 @@ namespace matrix {
         };
 
 
-//矩阵乘法方法的实现
+        //矩阵乘法方法的实现
         Matrix<T> multiple(matrix::Matrix<T> multiplier) {
             if (this->column == multiplier.row) {
                 Matrix<T> result(this->row, multiplier.column);
