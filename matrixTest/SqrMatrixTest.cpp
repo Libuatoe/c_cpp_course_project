@@ -42,7 +42,7 @@ int main() {
     std::cout << "矩阵sqrMatrix4的内容为:" << endl;
     sqrMatrix4.showMatrix();
 
-    std::cout << "将矩阵sqrMatrix4 和 sqrMatrix1 相乘后得到新矩阵为:" << endl;
+    std::cout << "将矩阵sqrMatrix4 和 sqrMatrix1 相乘(叉乘）后得到新矩阵为:" << endl;
     sqrMatrix5 = sqrMatrix4 * sqrMatrix1;
     sqrMatrix5.showMatrix();
 

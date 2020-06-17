@@ -1,3 +1,5 @@
+#ifndef SLICE
+#define SLICE
 #include "Matrix.hpp"
 
 //Slice a submatrix with coordinate
@@ -36,7 +38,7 @@ matrix::Matrix<T> matrix::Matrix<T>::sliceColumn(int columnNum) {
     return ans;
 }
 
-
+#endif
 
 
 

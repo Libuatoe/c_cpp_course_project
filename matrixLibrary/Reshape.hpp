@@ -1,6 +1,8 @@
+#ifndef RESHAPE
+#define RESHAPE
 # include "Matrix.hpp"
 
-//this column reshape matrix with the new size.
+//this function reshape matrix with the new size.
 template<typename T>
 void matrix::Matrix<T>::reshape(int newRow, int newColumn) {
     if (this->row * this->column != newRow * newColumn) {
@@ -31,3 +33,4 @@ void matrix::Matrix<T>::reshape(int newRow, int newColumn) {
     }
     this->data = newData;
 }
+#endif

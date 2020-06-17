@@ -1,3 +1,5 @@
+#ifndef SPARSE_MATRIX
+#define SPARSE_MATRIX
 #include "Matrix.hpp"
 
 template<typename T>
@@ -68,5 +70,5 @@ public:
 
 };
 
-
+#endif
 
