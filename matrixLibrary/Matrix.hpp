@@ -57,6 +57,10 @@ namespace matrix {
 
         friend Matrix operator*(T t, Matrix matrix);
 
+        friend Matrix operator/(Matrix matrix, T t);
+
+        friend Matrix operator/(T t, Matrix matrix);
+
         Matrix<T> scaleMultiple(T t);
 
         friend Matrix operator*(T t, Matrix matrix) {
@@ -74,6 +78,26 @@ namespace matrix {
             for (int i = 0; i < matrix.row; ++i) {
                 for (int j = 0; j < matrix.column; ++j) {
                     result.data[i][j] = matrix.data[i][j] * t;
+                }
+            }
+            return result;
+        }
+
+        friend Matrix operator/(T t, Matrix matrix) {
+            Matrix<T> result(matrix.row, matrix.column);
+            for (int i = 0; i < matrix.row; ++i) {
+                for (int j = 0; j < matrix.column; ++j) {
+                    result.data[i][j] = matrix.data[i][j] / t;
+                }
+            }
+            return result;
+        }
+
+        friend Matrix operator/(Matrix matrix, T t) {
+            Matrix<T> result(matrix.row, matrix.column);
+            for (int i = 0; i < matrix.row; ++i) {
+                for (int j = 0; j < matrix.column; ++j) {
+                    result.data[i][j] = matrix.data[i][j] / t;
                 }
             }
             return result;
