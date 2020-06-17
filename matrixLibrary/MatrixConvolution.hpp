@@ -5,14 +5,13 @@
 
 template<typename T>
 matrix::Matrix<T> matrix::Matrix<T>::convolution(matrix::Matrix<T> kernel) {
-        int mid = (kernel.column - 1) / 2;
         int temp;
         Matrix<T> result(row, column);
         int kLength = kernel.column;
         int kWidth = kernel.row;
 
-        for (int i = 0; i < kLength + column - 1; i++) {
-            for (int j = 0; j < kWidth + row - 1; j++) {
+        for (int i = 0; i < column; i++) {
+            for (int j = 0; j < row; j++) {
                 temp = 0;
                 for (int m = 0; m < kLength; m++) {
                     for (int n = 0; n < kWidth; n++) {
