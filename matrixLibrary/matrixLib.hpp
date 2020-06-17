@@ -11,4 +11,5 @@
 #include "Slice.hpp"
 #include "SparseMatrix.hpp"
 #include "SqrMatrix.hpp"
+#include "ComplexMatrix.hpp"
 #endif
