@@ -1,6 +1,5 @@
 #include <iostream>
 #include "../matrixLibrary/SqrMatrix.hpp"
-
 using namespace matrix;
 using namespace std;
 
@@ -21,22 +20,24 @@ int main() {
     SqrMatrix<double> sqrMatrix2(4);
     sqrMatrix2 = sqrMatrix1.inverse();
     sqrMatrix2.showMatrix();
-    std::cout <<"设定一个新的4 * 4方阵 sqrMatrix3"<<endl;
+    Matrix<double> sqrMatrix3(4,4);
 
-    double array2[] = {
-            1,3,7,8,
-            2,5,9,0,
-            4,6,7,9,
-            3,5,8,1
-    };
-    SqrMatrix<double> sqrMatrix3(4, array2);
-    std::cout << "矩阵sqrMatrix3的内容为:" << endl;
-    sqrMatrix3.showMatrix();
-
-    std::cout<< "将矩阵strMatrix3 和 strMatrix1 相乘后得到新矩阵为:"<<endl;
-    Matrix<double> matrix1 = (Matrix<double>)sqrMatrix3;
-    Matrix<double> matrix2 = (Matrix<double>) sqrMatrix1;
-    Matrix<double> matrix3 = matrix1 * matrix3;
-    matrix3.showMatrix();
+//    std::cout <<"设定一个新的4 * 4方阵 sqrMatrix3"<<endl;
+//
+//    double array2[] = {
+//            1,3,7,8,
+//            2,5,9,0,
+//            4,6,7,9,
+//            3,5,8,1
+//    };
+//    SqrMatrix<double> sqrMatrix3(4, array2);
+//    std::cout << "矩阵sqrMatrix3的内容为:" << endl;
+//    sqrMatrix3.showMatrix();
+//
+//    std::cout<< "将矩阵strMatrix3 和 strMatrix1 相乘后得到新矩阵为:"<<endl;
+//    Matrix<double> matrix1 = (Matrix<double>)sqrMatrix3;
+//    Matrix<double> matrix2 = (Matrix<double>) sqrMatrix1;
+//    Matrix<double> matrix3 = matrix1 * matrix3;
+//    matrix3.showMatrix();
 
 }
