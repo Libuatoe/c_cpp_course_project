@@ -1,4 +1,5 @@
 # matrix库的说明文档
++ 这是SUSTECH - CS205 的期末project.
 + 这个库中有两个文件夹，第一个是matrixLibrary,包含了库中所有的文件，
 使用时`#include <matrixLib.hpp>`就可以调用所有库文件。第二个文件夹是
 matrixTest文件夹，包含了对该库一些功能和函数的测试样例。
